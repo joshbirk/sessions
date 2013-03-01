@@ -46,6 +46,11 @@
         <unique>true</unique>
     </fields>
     <label>Content Owner</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Name</label>
         <type>Text</type>

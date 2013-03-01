@@ -36,43 +36,43 @@
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <fields>
-        <fullName>Accepted__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>Completed__c</fullName>
         <externalId>false</externalId>
-        <label>Accepted</label>
-        <type>Checkbox</type>
+        <label>Completed</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Milestone__c</fullName>
+        <externalId>false</externalId>
+        <label>Milestone</label>
+        <referenceTo>Milestone__c</referenceTo>
+        <relationshipLabel>Session Milestones</relationshipLabel>
+        <relationshipName>Session_Milestones</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Session__c</fullName>
         <externalId>false</externalId>
         <label>Session</label>
         <referenceTo>Session__c</referenceTo>
-        <relationshipLabel>Sessions Speakers</relationshipLabel>
-        <relationshipName>Sessions_Speakers</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>Speaker__c</fullName>
-        <externalId>false</externalId>
-        <label>Speaker</label>
-        <referenceTo>Speaker__c</referenceTo>
-        <relationshipLabel>Sessions Speakers</relationshipLabel>
-        <relationshipName>Sessions_Speakers</relationshipName>
+        <relationshipLabel>Session Milestones</relationshipLabel>
+        <relationshipName>Session_Milestones</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <label>Session Speaker</label>
+    <label>Session Milestone</label>
     <nameField>
-        <displayFormat>SS-{0000}</displayFormat>
-        <label>Session Speaker ID</label>
+        <displayFormat>SSM-{0000}</displayFormat>
+        <label>Session Milestone Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Sessions Speakers</pluralLabel>
+    <pluralLabel>Session Milestones</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

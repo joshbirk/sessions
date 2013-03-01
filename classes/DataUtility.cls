@@ -16,7 +16,7 @@ public with sharing class DataUtility {
 		insert milestones;
 	}
 	
-	public static List<Session__c> checkMilestones(List<SObject> scope) {
+	public static List<Session__c> checkMilestones(List<Session__c> scope) {
 		Date t = Date.Today();	
 		for(SOBject s : scope) {
 			Session__c session = (Session__c)s;

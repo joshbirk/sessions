@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
@@ -46,6 +47,13 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Behind_Milestones__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Behind Milestones</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Content_Owner__c</fullName>
         <externalId>false</externalId>
         <label>Content Owner</label>
@@ -54,6 +62,48 @@
         <relationshipName>Sessions</relationshipName>
         <required>false</required>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Duration__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration</label>
+        <picklist>
+            <picklistValues>
+                <fullName>30 Minutes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>60 Minutes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Room_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Room Size</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Double</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Small</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Theater</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Evangelist__c</fullName>
@@ -66,6 +116,13 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Google_Doc__c</fullName>
+        <externalId>false</externalId>
+        <label>Google Doc</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
         <fullName>IDin62__c</fullName>
         <caseSensitive>true</caseSensitive>
         <externalId>true</externalId>
@@ -74,6 +131,27 @@
         <required>false</required>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Beginner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Milestones__c</fullName>
@@ -114,6 +192,47 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+        <fullName>Other_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Topic</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Private_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Private Title</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Room__c</fullName>
+        <externalId>false</externalId>
+        <label>Room</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Safe_to_Publish__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Safe to Publish</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
@@ -139,6 +258,13 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Theater_Session__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Theater Session</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Title__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>false</externalId>
@@ -148,7 +274,74 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
+    <fields>
+        <fullName>To_Be_Determined__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>To Be Determined</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Topics__c</fullName>
+        <externalId>false</externalId>
+        <label>Topics</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Apex</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visualforce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heroku</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Declarative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Track__c</fullName>
+        <externalId>false</externalId>
+        <label>Track</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Force.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heroku</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Team Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
     <label>Session</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>SES-{0000}</displayFormat>
         <label>Session Name</label>

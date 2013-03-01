@@ -38,65 +38,33 @@
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
     <fields>
-        <fullName>Approved__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>Deadline__c</fullName>
         <externalId>false</externalId>
-        <label>Approved</label>
-        <type>Checkbox</type>
+        <label>Deadline</label>
+        <required>true</required>
+        <type>Date</type>
     </fields>
     <fields>
-        <fullName>Bio__c</fullName>
+        <fullName>Requirements__c</fullName>
         <externalId>false</externalId>
-        <label>Bio</label>
+        <label>Requirements</label>
         <length>32768</length>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
-    <fields>
-        <fullName>Email__c</fullName>
-        <externalId>true</externalId>
-        <label>Email</label>
-        <required>true</required>
-        <type>Email</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Location__c</fullName>
-        <description>Time zone or location of speaker</description>
-        <externalId>false</externalId>
-        <label>Location</label>
-        <length>255</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Mobile_Phone__c</fullName>
-        <externalId>false</externalId>
-        <label>Mobile Phone</label>
-        <required>false</required>
-        <type>Phone</type>
-    </fields>
-    <fields>
-        <fullName>Twitter__c</fullName>
-        <externalId>false</externalId>
-        <label>Twitter</label>
-        <length>255</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <label>Speaker</label>
+    <label>Milestone</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Deadline__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Name</label>
+        <label>Milestone Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Speakers</pluralLabel>
+    <pluralLabel>Milestones</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
