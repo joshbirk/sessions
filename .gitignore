@@ -1,0 +1,10 @@
+build.xml
+build.properties
+.DS_Store
+backup-build.xml
+1.manifest
+data.json
+request.xml
+response.xml
+result.xml
+scratch.page
