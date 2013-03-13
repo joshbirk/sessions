@@ -45,6 +45,13 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Lead_Speaker__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Lead Speaker</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Session__c</fullName>
         <externalId>false</externalId>
         <label>Session</label>

@@ -54,16 +54,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Content_Owner__c</fullName>
-        <externalId>false</externalId>
-        <label>Content Owner</label>
-        <referenceTo>Content_Owners__c</referenceTo>
-        <relationshipLabel>Sessions</relationshipLabel>
-        <relationshipName>Sessions</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Duration__c</fullName>
         <externalId>false</externalId>
         <label>Duration</label>
@@ -106,16 +96,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Evangelist__c</fullName>
-        <externalId>false</externalId>
-        <label>Evangelist</label>
-        <referenceTo>Content_Owners__c</referenceTo>
-        <relationshipLabel>Sessions (Evangelist)</relationshipLabel>
-        <relationshipName>Sessions1</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Google_Doc__c</fullName>
         <externalId>false</externalId>
         <label>Google Doc</label>
@@ -131,6 +111,16 @@
         <required>false</required>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Speaker__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Speaker</label>
+        <referenceTo>Session_Speakers__c</referenceTo>
+        <relationshipLabel>Sessions</relationshipLabel>
+        <relationshipName>Sessions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Level__c</fullName>
@@ -201,6 +191,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Private_Abstract__c</fullName>
+        <externalId>false</externalId>
+        <label>Private Abstract</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Private_Title__c</fullName>
         <externalId>false</externalId>
         <label>Private Title</label>
@@ -224,6 +222,16 @@
         <externalId>false</externalId>
         <label>Safe to Publish</label>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sponsor__c</fullName>
+        <externalId>false</externalId>
+        <label>Sponsor</label>
+        <referenceTo>Content_Owners__c</referenceTo>
+        <relationshipLabel>Sessions (Sponsor)</relationshipLabel>
+        <relationshipName>Sessions3</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
