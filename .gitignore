@@ -8,3 +8,6 @@ request.xml
 response.xml
 result.xml
 scratch.page
+tmp
+.lastbuild
+.session
