@@ -53,12 +53,49 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Company</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Speakers</relationshipLabel>
+        <relationshipName>Speakers</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Email__c</fullName>
         <externalId>true</externalId>
         <label>Email</label>
         <required>true</required>
         <type>Email</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>First Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Location__c</fullName>
@@ -78,6 +115,25 @@
         <type>Phone</type>
     </fields>
     <fields>
+        <fullName>Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>First_Name__c + &apos; &apos; + Last_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Twitter__c</fullName>
         <externalId>false</externalId>
         <label>Twitter</label>
@@ -93,8 +149,9 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Name</label>
-        <type>Text</type>
+        <displayFormat>SPK-{0000}</displayFormat>
+        <label>Record</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Speakers</pluralLabel>
     <searchLayouts/>

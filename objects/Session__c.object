@@ -47,6 +47,14 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Additional_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Details</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Behind_Milestones__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -116,7 +124,7 @@
         <fullName>Lead_Speaker__c</fullName>
         <externalId>false</externalId>
         <label>Lead Speaker</label>
-        <referenceTo>Session_Speakers__c</referenceTo>
+        <referenceTo>Session_Speaker__c</referenceTo>
         <relationshipLabel>Sessions</relationshipLabel>
         <relationshipName>Sessions</relationshipName>
         <required>false</required>
