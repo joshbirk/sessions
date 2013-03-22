@@ -1,6 +1,4 @@
 public with sharing class DataUtility {
-	public static final Integer NUMBER_OF_MILESTONES = 7;
-
 	public DataUtility() {	}
 	
 	public static void createMilestoneData() {
@@ -18,22 +16,19 @@ public with sharing class DataUtility {
 	
 	public static List<Session__c> checkMilestones(List<Session__c> scope) {
 		Date t = Date.Today();	
-		for(SOBject s : scope) {
-			Session__c session = (Session__c)s;
-			session.Behind_Milestones__c = false; //assume the session is not behind
+		Map<Id,Session__c> mapped_sessions = new Map<Id,Session__c>(scope);
+		for(Session__c s : scope) {
+			s.Behind_Milestones__c = false; //assume the session is not behind
 		}
-		Map<Id, Session_Milestone__c> milestones = new Map<Id, Session_Milestone__c>([SELECT Id,Session__c from Session_Milestone__c WHERE Completed__c = NULL AND Milestone__r.Deadline__c <= :t]);
+		Map<Id, Session_Milestone__c> milestones = new Map<Id, Session_Milestone__c>([SELECT Id,Session__c from Session_Milestone__c WHERE Session__c IN :mapped_sessions.keyset() AND Completed__c = NULL AND Milestone__r.Deadline__c <= :t]);
 		for(Id milestone_id : milestones.keySet()) {
-			for(SObject s : scope) {
-				Session__c session = (Session__c)s;
-				if(milestones.get(milestone_id).Session__c == session.Id) {
-					session.Behind_Milestones__c = true; //failed milestone found
-				}
+			mapped_sessions.get(milestones.get(milestone_id).Session__c).Behind_Milestones__c = true; //failed milestone found
 			}
-		}
+		
 		
 		return scope;
 	}
+	
 	
 	public static List<Session_Milestone__c> createMilestonesFor(Session__c s) {
 		List<Session_Milestone__c> session_milestones = new List<Session_Milestone__c>();
@@ -45,19 +40,35 @@ public with sharing class DataUtility {
 		return session_milestones;
 	}
 	
+	public static List<Session_Speaker__c> checkDuplicateLeadSpeakers(List<Session_Speaker__c> scope) {
+		List<Id> session_ids = new List<Id>();
+		List<Session_Speaker__c> dupe_leads = new List<Session_Speaker__c>();
+		Map<Id,Session_Speaker__c> lead_speakers = new Map<Id,Session_Speaker__c>();
 	
-	@IsTest
-	public static void testCreateMilestoneData() {
-		DataUtility.createMilestoneData();		
-		List<Milestone__c> milestones = [SELECT ID from Milestone__c];
-		System.assertEquals(DataUtility.NUMBER_OF_MILESTONES,milestones.size());
+		for(Session_Speaker__c s : scope) {
+			if(s.Lead_Speaker__c == true) {
+				session_ids.add(s.Session__c);
+				if(s.Id != null) {lead_speakers.put(s.Id,s);}	
+		}
 		
-		Session__c session = new Session__c(Title__c='Test Session');
-		insert session;
 		
-		List<Session_Milestone__c> s_milestones = [SELECT ID from Session_Milestone__c where Session__c =: session.Id];
-		System.assertEquals(DataUtility.NUMBER_OF_MILESTONES,s_milestones.size());
+		List<Session_Speaker__c> duplicate_leads = [SELECT ID from Session_Speaker__c WHERE ID NOT IN :lead_speakers.keySet() AND Session__c IN :session_ids AND Lead_Speaker__c = TRUE];
+		for(Session_Speaker__c speaker : scope) {
+				for(Session_Speaker__c dupe : duplicate_leads) {
+					if(dupe.Session__c == speaker.Session__c) {
+						dupe_leads.add(speaker);
+					}
+				}
+			}
 		
+		
+		}
+	
+		return dupe_leads;
+	
 	}
+	
+	
+	
 
 }
