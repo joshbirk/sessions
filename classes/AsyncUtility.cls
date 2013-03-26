@@ -69,7 +69,7 @@ global with sharing class AsyncUtility implements Database.Batchable<sObject>, S
            }
 
     //-- Outbound Email 
-    static global Boolean sendEmail(String subject, String body, List<String> toAddresses, Boolean isHTML) {
+    static global Boolean sendEmail(String subject, String body, List<String> toAddresses, Boolean isHTML, Boolean sendBlind) {
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
             mail.setToAddresses(toAddresses);
             mail.setSubject (subject);  
@@ -86,7 +86,7 @@ global with sharing class AsyncUtility implements Database.Batchable<sObject>, S
     static void testAsyncApex() {
         DataUtility.createMilestoneData();      
         List<Milestone__c> milestones = [SELECT ID from Milestone__c];
-        System.assertEquals(DataUtility.NUMBER_OF_MILESTONES,milestones.size());
+        System.assertEquals(7,milestones.size());
 
         Session__c s = new Session__c(Title__c='Test Session');
         insert s;

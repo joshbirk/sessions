@@ -38,16 +38,9 @@ public with sharing class SessionUnitTests {
 	@IsTest 
 	public static void leadSpeakerCheck() {
 		DataUtility.createMilestoneData();		
+		List<SObject> data = DataUtility.createSpeakerSessionData();
 		
-		Session__c session = new Session__c(Title__c='Test Session');
-		insert session;
-		
-		Speaker__c speaker = new Speaker__c(First_Name__c='Frank',Last_Name__c='Smith',Email__c='j@j.com',Mobile_Phone__c='888-888-8888');
-		insert speaker;
-		
-		Session_Speaker__c ss = new Session_Speaker__c(Speaker__c=speaker.Id,Session__c=session.Id,Lead_Speaker__c=true);
-		insert ss;
-		
+		Session_Speaker__c ss = (Session_Speaker__c)data[2];
 		Session_Speaker__c ss2 = ss.clone();
 		
 		try{
@@ -58,7 +51,7 @@ public with sharing class SessionUnitTests {
 		
 		
 		System.assertEquals(null,ss2.Id);
-		List<Session__c> updated_session = [SELECT ID from Session__c WHERE ID =: session.id AND Lead_Speaker__c =: ss.Id];
+		List<Session__c> updated_session = [SELECT ID from Session__c WHERE ID =: data[0].id AND Lead_Speaker__c =: data[2].Id];
 		System.assertEquals(1,updated_session.size());
 		
 	}
@@ -91,7 +84,28 @@ public with sharing class SessionUnitTests {
 		
 		 System.assertEquals(session[0].Lead_Speaker__c,ss[0].Id);
 	}
+
+
+	//Test Speaker Approvals
+	@IsTest
+	public static void sendSpeakerApprovals() {
+		List<SObject> data = DataUtility.createSpeakerSessionData();
+		
+		Session_Speaker__c ss = (Session_Speaker__c)data[2];
+		ss.Approved__c = true;
+		ss.Accepted__c = true;
+		
+		update ss;
+		
+		ss = [SELECT Id, Notification_Sent__c from Session_Speaker__c WHERE Id =: ss.Id];
+		System.assertEquals(ss.Notification_Sent__c,true);
+	}
+
+
+
 }
+
+	
 
 /*
 

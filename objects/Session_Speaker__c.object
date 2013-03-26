@@ -45,10 +45,24 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Approved</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Lead_Speaker__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Lead Speaker</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Notification Sent</label>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -82,4 +96,16 @@
     <pluralLabel>Sessions Speakers</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>New_Speaker</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Speaker</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/a00/e</url>
+    </webLinks>
 </CustomObject>

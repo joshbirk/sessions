@@ -14,6 +14,24 @@ public with sharing class DataUtility {
 		insert milestones;
 	}
 	
+	public static List<SObject> createSpeakerSessionData() {
+		List<SObject> data = new List<SObject>();
+		
+		Session__c session = new Session__c(Title__c='Test Session');
+		insert session;
+		data.add(session);
+		
+		Speaker__c speaker = new Speaker__c(First_Name__c='Frank',Last_Name__c='Smith',Email__c='j@j.com',Mobile_Phone__c='888-888-8888');
+		insert speaker;
+		data.add(speaker);
+		
+		Session_Speaker__c ss = new Session_Speaker__c(Speaker__c=speaker.Id,Session__c=session.Id,Lead_Speaker__c=true);
+		insert ss;
+		data.add(ss);
+		
+		return data;
+	}
+	
 	public static List<Session__c> checkMilestones(List<Session__c> scope) {
 		Date t = Date.Today();	
 		Map<Id,Session__c> mapped_sessions = new Map<Id,Session__c>(scope);
@@ -69,6 +87,23 @@ public with sharing class DataUtility {
 	}
 	
 	
-	
+	public static User createSpeakerUser(Id sid) {
+		Speaker__c speaker = [SELECT ID, Name, First_Name__c, Last_Name__c, Email__c from Speaker__c where ID =: sid LIMIT 1];
+		Contact c = new Contact(LastName=speaker.Last_Name__c,AccountID='001i0000006EmII');
+		
+		insert c;
+		
+		Database.DMLOptions dmo = new Database.DMLOptions();
+		dmo.EmailHeader.triggerUserEmail = true;
+				
+		PortalHandler handler = new PortalHandler();
+		Auth.UserData userData = new Auth.UserData(speaker.Id, speaker.First_Name__c, speaker.Last_Name__c,
+		        speaker.First_Name__c+' '+speaker.Last_Name__c, speaker.Email__c, null, speaker.First_Name__c+speaker.Last_Name__c+'@df13devzone.org',
+				'en_US', null,null, new Map<String, String>{});
+		User u = handler.createUser(null, userData);
+		u.ContactId = c.Id;
+		return u;
+		
+		}
 
 }

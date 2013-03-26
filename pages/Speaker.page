@@ -1,0 +1,25 @@
+<apex:page showHeader="false" standardStyleSheets="false" standardController="Speaker__c" extensions="MilestoneExt">
+	<h1><apex:outputText value="{!Speaker__c.Name__c}"></apex:outputText>
+	</h1>
+	<hr />
+	<apex:outputText value="{!Speaker__c.Email__c}"></apex:outputText>
+	<apex:outputText value="{!Speaker__c.Mobile_Phone__c}"></apex:outputText>
+	<hr />
+	
+	<apex:repeat value="{!Speaker__c.Sessions_Speakers__r}" var="session_speaker" >
+		<p>
+		<apex:outputText value="{!session_speaker.Session__r.Title__c}"></apex:outputText><br />
+		<i><apex:outputText value="{!session_speaker.Session__r.Abstract__c}"></apex:outputText></i>
+		</p>
+	</apex:repeat>
+	<hr />
+
+	<apex:repeat value="{!milestones}" var="milestone" >
+		<apex:outputText value="{!milestone.Name}"></apex:outputText>&nbsp;
+		<apex:outputText value="{!milestone.Deadline__c}"></apex:outputText><br />
+		
+	
+	</apex:repeat>
+	
+	
+</apex:page>
