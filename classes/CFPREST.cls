@@ -2,18 +2,27 @@
 global with sharing class CFPREST {
 
 	global CFPREST() {}
-		
+	
+	//{"data":{"FirstName": "Joe","LastName": "Smith","MobilePhone": "888-888-8888","Bio": "One Cool Guy","Email": "joe@smith.com","Title": "My Session","SessionAbstract": "is so cool"}}	
 	@HTTPPost
 	global static FormStatus submitPaper(FormData data) {
 		Speaker__c speaker = new Speaker__c(First_Name__c=data.FirstName,Last_Name__c=data.LastName,Mobile_Phone__c=data.MobilePhone,Position__c=data.Position,Company__c=data.Company,Email__c=data.Email,Twitter__c=data.Twitter,Bio__c=data.Bio);
-		try {
-			insert speaker;
-		} catch(DMLException e) {
-			FormStatus fs = new FormStatus();
-			fs.Status = 'Error';
-			fs.Message = e.getMessage();
+		
+		List<Speaker__c> existing_speakers = [SELECT ID from Speaker__c WHERE Email__c =: data.Email];
+		if(existing_speakers.size() == 0) {
+			//speaker does not exist, attempt to create one
+			try {
+				insert speaker;
+			} catch(DMLException e) {
+				FormStatus fs = new FormStatus();
+				fs.Status = 'Error';
+				fs.Message = e.getMessage();
 			
-			return fs;
+				return fs;
+			}
+			
+		} else {
+			speaker.Id = existing_speakers[0].Id;
 		}
 		
 		Session__c session = new Session__c(Title__c=data.Title,Abstract__c=data.SessionAbstract,Additional_Details__c=data.Notes);
