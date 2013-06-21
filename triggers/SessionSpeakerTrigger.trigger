@@ -15,7 +15,7 @@ trigger SessionSpeakerTrigger on Session_Speaker__c (before insert, before updat
 			approved_speakers.add(speaker);
 			}
 		}
-		PortalHandler.sendSessionApprovalEmail(approved_speakers);
+	//	PortalHandler.sendSessionApprovalEmail(approved_speakers);
 	}
 	
 	if(Trigger.isAfter) {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Floor Plans</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom24: Building</motif>
+    <url>https://na15.salesforce.com/resource/1362092897000/floor_plan</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

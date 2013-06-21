@@ -25,7 +25,14 @@ global with sharing class CFPREST {
 			speaker.Id = existing_speakers[0].Id;
 		}
 		
-		Session__c session = new Session__c(Title__c=data.Title,Abstract__c=data.SessionAbstract,Additional_Details__c=data.Notes);
+		Session__c session = new Session__c(CFP__c=true,Title__c=data.Title,Abstract__c=data.SessionAbstract,Additional_Details__c=data.Notes,Track__c=data.Track,Level__c=data.Level);
+		if(data.Type == 'ISV') {
+			session.ISV_Submission__c = true;
+		}
+		if(data.Email.indexOf('@salesforce.com') != -1) {
+			session.Internal_Submission__c = true;
+			session.CFP__c = false;
+		}
 		try {
 			insert session;
 		} catch(DMLException e) {
@@ -50,14 +57,15 @@ global with sharing class CFPREST {
 		FormStatus fs = new FormStatus();
 		fs.Status = 'Completed';
 		fs.Message = 'Submission complete. Speaker:'+speaker.Id+' Session:'+session.Id;
-		
+		fs.Speaker = [SELECT Name, Name__c, Email__c, Position__c, Company__c, Bio__c from Speaker__c WHERE ID =: speaker.Id];
+		fs.Session = [SELECT Name, Title__c, Abstract__c, Additional_Details__c from Session__c WHERE ID =: session.Id];
 		return fs;
 	}	
 	
 	
 	
 	global class FormData {
-    //Speaker Data
+    //Speaker Submission Data
         global String FirstName { get; set; }
         global String LastName { get; set; }
         global String MobilePhone { get; set; }
@@ -67,15 +75,21 @@ global with sharing class CFPREST {
 		global String Twitter { get; set; }
 		global String Bio { get; set; }
 		
-	//Session Data
+	//Session Submission Data
 		global String Title { get; set; }
         global String SessionAbstract { get; set; }
         global String Notes { get; set; }
+		global String Track { get; set; }
+		global String Level { get; set; }
+		global String Type { get; set; }
 	}	
 	
+	//Response Data
 	global class FormStatus {
 		global String Status { get; set; }
         global String Message { get; set; }
+		global Session__c Session{ get; set; }
+		global Speaker__c Speaker { get; set; }
 	}
 
 }

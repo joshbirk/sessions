@@ -1,6 +1,16 @@
 public with sharing class DataUtility {
 	public DataUtility() {	}
 	
+	public static void DeleteAllData() {
+		List<Session__c> sessions = [SELECT ID From Session__c];
+		List<Speaker__c> speakers = [SELECT ID From Speaker__c];
+	//`	List<Session_Speaker__c> sess_speakers = [SELECT ID From Session_Speaker__c];
+		
+		delete sessions;
+		delete speakers;
+	//	delete sess_speakers;	
+	}
+	
 	public static void createMilestoneData() {
 		List<Milestone__c> milestones = new List<Milestone__c>();
 		milestones.add(new Milestone__c(Name='Title Approved', Deadline__c=date.parse('1/2/2013')));
@@ -86,7 +96,7 @@ public with sharing class DataUtility {
 	
 	}
 	
-	
+/*	
 	public static User createSpeakerUser(Id sid) {
 		Speaker__c speaker = [SELECT ID, Name, First_Name__c, Last_Name__c, Email__c from Speaker__c where ID =: sid LIMIT 1];
 		Contact c = new Contact(LastName=speaker.Last_Name__c,AccountID='001i0000006EmII');
@@ -105,5 +115,5 @@ public with sharing class DataUtility {
 		return u;
 		
 		}
-
+*/
 }

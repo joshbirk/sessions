@@ -111,7 +111,7 @@
         <fullName>Mobile_Phone__c</fullName>
         <externalId>false</externalId>
         <label>Mobile Phone</label>
-        <required>false</required>
+        <required>true</required>
         <type>Phone</type>
     </fields>
     <fields>
